@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoamWild Travel Agency | Explore the World</title>
+    <style>
+        /* 1. CSS Variables & Design System */
+        :root {
+            --primary: #0f766e;       /* Deep Teal */
+            --primary-hover: #115e59;
+            --accent: #f59e0b;        /* Warm Amber */
+            --text-dark: #1f2937;     /* Charcoal */
+            --text-light: #4b5563;    /* Slate */
+            --bg-light: #f8fafc;      /* Off-white */
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 2. Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* 3. Sticky Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-hover);
+            color: var(--white);
+        }
+
+        /* 4. Hero Section with Search bar */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), 
+                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?fm=jpg&q=80&w=2000') no-repeat center center/cover;
+            padding: 140px 0 160px 0;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Search Widget Container */
+        .search-wrapper {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            position: absolute;
+            left: 5%;
+            right: 5%;
+            bottom: -50px;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input-group input, .input-group select {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            outline: none;
+            background-color: #fafafa;
+        }
+
+        .search-btn {
+            background-color: var(--accent);
+            color: var(--text-dark);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-end;
+            height: 48px;
+        }
+
+        .search-btn:hover {
+            background-color: #d97706;
+            transform: translateY(-1px);
+        }
+
+        /* 5. Destinations Grid Section */
+        .destinations {
+            padding: 120px 0 60px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-img-container img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(15, 118, 110, 0.9);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .card-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .btn-card {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .btn-card:hover {
+            color: var(--accent);
+        }
+
+        /* 6. Why Choose Us (Features) Section */
+        .features {
+            background-color: var(--white);
+            padding: 80px 0;
+            margin: 40px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin: 15px 0 10px 0;
+            color: var(--text-dark);
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: #f0fdfa;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* 7. Footer Layout */
+        footer {
+            background-color: #1e293b;
+            color: #cbd5e1;
+            padding: 60px 0 30px 0;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* 8. Responsive Adaptations */
+        @media (max-width: 1024px) {
+            .grid, .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .search-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .search-btn {
+                grid-column: span 2;
+            }
+            .hero { padding-bottom: 220px; }
+        }
+
+        @media (max-width: 768px) {
+            .grid, .features-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 { font-size: 2.4rem; }
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            .search-btn {
+                grid-column: span 1;
+            }
+            .hero { padding-bottom: 340px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Roam<span>Wild</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Destinations</a></li>
+                    <li><a href="#">Tours</a></li>
+                    <li><a href="#">Special Offers</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#" class="btn-nav">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Header & Filter Interface -->
+    <section class="hero">
+        <div class="container">
+            <h1>Adventure Awaits, Let's Find It.</h1>
+            <p>Discover boutique escapes, rugged trails, and cultural journeys tailored to your rhythm.</p>
+            
+            <!-- Contextual Search Widget -->
+            <div class="search-wrapper">
+                <form class="search-form" onsubmit="event.preventDefault();">
+                    <div class="input-group">
+                        <label for="dest">Where to?</label>
+                        <input type="text" id="dest" placeholder="e.g. Maldives, Alps, Paris">
+                    </div>
+                    <div class="input-group">
+                        <label for="type">Activity Type</label>
+                        <select id="type">
+                            <option>All Types</option>
+                            <option>Beach & Luxury</option>
+                            <option>Hiking & Wildlife</option>
+                            <option>City Breaks</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="date">When</label>
+                        <input type="date" id="date">
+                    </div>
+                    <div class="input-group">
+                        <label for="guests">Guests</label>
+                        <select id="guests">
+                            <option>1 Guest</option>
+                            <option selected>2 Guests</option>
+                            <option>3+ Guests</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Curated Destinations -->
+    <section class="destinations">
+        <div class="container">
+            <h2 class="section-title">Trending Itineraries</h2>
+            <p class="section-subtitle">Handpicked packages crafted by our localized travel specialists.</p>
+            
+            <div class="grid">
+                <!-- Trip Card 1 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="tag">Beach & Luxury</span>
+                        <img src="image_agent_tag_7645714049134715280" alt="Exotic overwater bungalows over clear turquoise water in the Maldives">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span>7 Days / 6 Nights</span>
+                            <span>★ 4.9 (124 reviews)</span>
+                        </div>
+                        <h3 class="card-title">Maldives Serenity Escape</h3>
+                        <p class="card-text">Unwind in luxury overwater villas, dive alongside manta rays, and enjoy curated sunset beach dinners.</p>
+                        <div class="card-footer">
+                            <div class="price">$2,450 <span>/ person</span></div>
+                            <a href="#" class="btn-card">View Plan →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Trip Card 2 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="tag">Hiking & Alpine</span>
+                        <img src="image_agent_tag_7645714049134716493" alt="Hiker overlooking a vast green mountain valley with massive peaks">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span>9 Days / 8 Nights</span>
+                            <span>★ 4.8 (92 reviews)</span>
+                        </div>
+                        <h3 class="card-title">Swiss Alps High Trail</h3>
+                        <p class="card-text">Traverse panoramic mountain passes, explore car-free villages, and recharge in cozy high-altitude chalets.</p>
+                        <div class="card-footer">
+                            <div class="price">$1,890 <span>/ person</span></div>
+                            <a href="#" class="btn-card">View Plan →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Trip Card 3 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="tag">Culture & Food</span>
+                        <img src="image_agent_tag_7645714049134714049" alt="Charming European street with outdoor cafe seating alongside historic brick buildings">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span>5 Days / 4 Nights</span>
+                            <span>★ 4.7 (210 reviews)</span>
+                        </div>
+                        <h3 class="card-title">Hidden Historic Europe</h3>
+                        <p class="card-text">Skip the tourist traps. Wander centuries-old lanes, dine with local chefs, and uncover regional heritage secrets.</p>
+                        <div class="card-footer">
+                            <div class="price">$1,250 <span>/ person</span></div>
+                            <a href="#" class="btn-card">View Plan →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Grid -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Travel With Us?</h2>
+            <p class="section-subtitle">We handle the fine details so you can focus entirely on the horizon.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon-box">✓</div>
+                    <h3>Local Guides Only</h3>
+                    <p>Every itinerary pairs you with experts who grew up in the valleys and neighborhoods you explore.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box">🛡</div>
+                    <h3>Fully Insured Protection</h3>
+                    <p>Dynamic 100% refund options up to 48 hours before departure. No hidden traps, no stress.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box">✈</div>
+                    <h3>Carbon-Offset Journeys</h3>
+                    <p>We invest a direct portion of every booking fee straight into verified global reforestation projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>RoamWild</h3>
+                    <p>Crafting authentic, responsible, and immersive travel itineraries across all seven continents since 2018.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="#">Eco-Luxury Safaris</a></li>
+                        <li><a href="#">Solo Backpacker Plans</a></li>
+                        <li><a href="#">Seasonal Deals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Travel Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety Updates</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 RoamWild Travel Group. All rights reserved. Built with CSS Flexbox & Grid.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
