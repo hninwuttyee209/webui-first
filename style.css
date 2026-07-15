@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Minimalist Website</title>
-    <style>
+
         /* 1. Global Reset & Base Styles */
         * {
             margin: 0;
@@ -152,69 +146,5 @@
                 gap: 15px;
             }
         }
-    </style>
-</head>
-<body>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">FlexSpace</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Introduction -->
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to Your New Website</h1>
-            <p>A clean, responsive template built using semantic HTML5 structures and modern CSS layouts.</p>
-        </div>
-    </section>
-
-    <!-- Main Content Area -->
-    <div class="container main-layout">
-        <!-- Primary Articles -->
-        <main>
-            <article class="card">
-                <h2>The Power of Flexbox</h2>
-                <p>This layout uses CSS Flexbox to align elements effortlessly. The header links, structural columns, and responsive properties are handled cleanly without older, messy layout techniques like floats.</p>
-                <a href="#" class="btn">Read More</a>
-            </article>
-
-            <article class="card">
-                <h2>Mobile Responsive Ready</h2>
-                <p>Scroll down or resize your browser window! When the viewport drops below 768 pixels, the sidebar drops beneath the main content automatically using a media query block, keeping it completely readable on mobile devices.</p>
-            </article>
-        </main>
-
-        <!-- Sidebar Components -->
-        <aside>
-            <div class="card">
-                <h2>About Us</h2>
-                <p>We build lightweight templates meant to serve as pristine starting points for developers and designers alike.</p>
-            </div>
-
-            <div class="card">
-                <h2>Quick Resources</h2>
-                <p>Check out documentation, UI kits, and extra modules inside our core platform dashboard.</p>
-            </div>
-        </aside>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 FlexSpace Design. All rights reserved.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+    
+        
