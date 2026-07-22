@@ -77,3 +77,4 @@
                 clickCache = btn;
             }
         }
+    <script src="edu-script.js"></script>
